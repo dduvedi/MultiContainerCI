@@ -11,7 +11,7 @@ after_success:
     - docker build -t dduvedi/multi-client  ./client
     - docker build -t dduvedi/multi-nginx   ./nginx
     - docker build -t dduvedi/multi-server  ./server
-    - docker build -t dduvedi/multi-worke   ./worker
+    - docker build -t dduvedi/multi-worker   ./worker
     
     
     
