@@ -3,8 +3,9 @@ sudo: required
 services:
     - docker
 
-scripts:
-    - docker run -e CI=true dudvedi/multicontainer npm test
+before_install:
+    - docker build -t dudvedi/multicontainer -f ./client/Dockerfile.dev ./client
+
 
 after_success:
     - dokcer build -t dduvedi/multi-client  ./client
