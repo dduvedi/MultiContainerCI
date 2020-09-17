@@ -1,0 +1,26 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t dudvedi/multicontainer -f ./client/Dockerfile.dev ./client
+
+scripts:
+    -   docker run dudvedi/multicontainer npm test -- --coverage
+
+after_success:
+    - dokcer build -t dduvedi/multi-client  ./client
+    - dokcer build -t dduvedi/multi-nginx   ./nginx
+    - dokcer build -t dduvedi/multi-server  ./server
+    - dokcer build -t dduvedi/multi-worke   ./worker
+    
+    
+    
+    
+# Log in to docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# Take those images and push them to dokcer hub
+    - docker push dduvedi/multi-client
+    - docker push dduvedi/multi-nginx
+    - docker push dduvedi/multi-server
+    - docker push dduvedi/multi-worker
