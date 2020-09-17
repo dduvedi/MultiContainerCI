@@ -8,17 +8,17 @@ before_install:
 
 
 after_success:
-    - dokcer build -t dduvedi/multi-client  ./client
-    - dokcer build -t dduvedi/multi-nginx   ./nginx
-    - dokcer build -t dduvedi/multi-server  ./server
-    - dokcer build -t dduvedi/multi-worke   ./worker
+    - docker build -t dduvedi/multi-client  ./client
+    - docker build -t dduvedi/multi-nginx   ./nginx
+    - docker build -t dduvedi/multi-server  ./server
+    - docker build -t dduvedi/multi-worke   ./worker
     
     
     
     
 # Log in to docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-# Take those images and push them to dokcer hub
+# Take those images and push them to docker hub
     - docker push dduvedi/multi-client
     - docker push dduvedi/multi-nginx
     - docker push dduvedi/multi-server
